@@ -1,0 +1,6 @@
+.button{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:52px;min-width:44px;padding:14px 28px;isolation:isolate;overflow:clip;border:1px solid transparent;border-radius:var(--radius-pill);font-size:.84rem;font-weight:500;line-height:1.4;letter-spacing:.14em;text-transform:uppercase;transform:translate(var(--mx,0px),var(--my,0px));transition:transform 250ms var(--ease-out),color 250ms;text-align:center}
+.solid{background:var(--mora-cream);color:var(--mora-ink)}.solid-dark{background:var(--mora-ink);color:var(--mora-cream)}.ghost{background:transparent;color:var(--mora-cream);border-color:var(--mora-line-light)}
+.fill{z-index:-1;position:absolute;left:var(--x,50%);top:var(--y,50%);width:220%;aspect-ratio:1;background:var(--mora-caramel);border-radius:50%;transform:translate(-50%,-50%) scale(0);transition:transform 450ms cubic-bezier(.22,1,.36,1)}.label{position:relative}
+.button:focus-visible{outline-color:var(--mora-copper)}.ghost:focus-visible{outline-color:var(--mora-amber)}
+@media(hover:hover) and (pointer:fine){.button:hover .fill{transform:translate(-50%,-50%) scale(1)}.button:hover{color:var(--mora-ink)}}
+.button:active{transform:scale(.97)}@media(prefers-reduced-motion:reduce){.button{transform:none}}

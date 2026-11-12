@@ -1,0 +1,13 @@
+node_modules/
+.next/
+.next-pages/
+out/
+dist/
+coverage/
+.netlify/
+.vercel/
+.env*
+!.env.example
+*.log
+*.tsbuildinfo
+next-env.d.ts

@@ -1,0 +1,6 @@
+.rail{position:relative;height:420vh;background:var(--mora-mocha-600)}.stage{position:sticky;top:0;height:100svh;overflow:clip;isolation:isolate}
+.skeleton{display:grid;place-items:center;min-height:120svh;background:var(--mora-mocha-700)}.journey{position:relative;z-index:2;background:var(--mora-paper);color:var(--mora-ink);border-radius:50% 50% 0 0/72px 72px 0 0}.roastRail{height:520vh;position:relative}.contactRail{height:450vh;position:relative;background:var(--mora-mocha-600)}
+@media(max-width:768px){.rail{height:360vh}.contactRail{height:380vh}}
+@media(prefers-reduced-motion:reduce){.rail,.roastRail,.contactRail{height:auto}.stage{position:relative;min-height:100svh;height:auto}}
+:global(.reduce-motion) .rail,:global(.reduce-motion) .roastRail,:global(.reduce-motion) .contactRail{height:auto}
+:global(.reduce-motion) .stage{position:relative;min-height:100svh;height:auto}

@@ -1,0 +1,6 @@
+'use client';
+import {useRef} from 'react';
+import {gsap,ScrollTrigger,useGSAP} from '@/lib/gsap';
+import {reducedMotion} from '@/lib/motion';
+import styles from './Journey.module.css';
+export function FlavorMarquee(){const root=useRef<HTMLDivElement>(null);useGSAP(()=>{if(reducedMotion())return;const track=root.current!.firstElementChild as HTMLElement;let x=0,direction=-1,speed=1,width=track.scrollWidth/2;const resize=new ResizeObserver(()=>{width=track.scrollWidth/2;});resize.observe(track);const trigger=ScrollTrigger.create({trigger:root.current,start:'top bottom',end:'bottom top',onUpdate:s=>{direction=-s.direction;speed=Math.min(5,1+Math.abs(s.getVelocity())/400);root.current!.dataset.direction=direction<0?'left':'right';}});const tick=(_t:number,delta:number)=>{if(!trigger.isActive||document.hidden||!width)return;x+=direction*60*(delta/1000)*speed;speed+=(1-speed)*.04;x=((x%width)+width)%width;track.style.transform=`translateX(${x-width}px)`;};gsap.ticker.add(tick);return()=>{resize.disconnect();gsap.ticker.remove(tick);};},{scope:root});return <div ref={root} className={styles.marquee} aria-hidden="true"><div>{[0,1].map(copy=><span key={copy}>{['Chocolate','Caramelo','Flor de laranjeira','Cacau','Mel','Avelã'].map((word,i)=><span className={i%2?styles.outline:''} key={word}>{word} <i>·</i> </span>)}</span>)}</div></div>}

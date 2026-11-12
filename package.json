@@ -1,0 +1,11 @@
+{
+  "name": "mora-cafe-workspace",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix mora-cafe run dev",
+    "build": "npm --prefix mora-cafe run build",
+    "start": "npm --prefix mora-cafe run start",
+    "lint": "npm --prefix mora-cafe run lint",
+    "frames:optimize": "npm --prefix mora-cafe run frames:optimize"
+  }
+}
