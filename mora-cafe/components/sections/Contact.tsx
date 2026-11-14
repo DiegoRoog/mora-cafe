@@ -5,6 +5,7 @@ import {FrameCanvas} from '@/components/frames/FrameCanvas';
 import {Button} from '@/components/ui/Button';
 import {gsap,useGSAP} from '@/lib/gsap';
 import {reducedMotion} from '@/lib/motion';
+import {contactCollision} from '@/lib/easing';
 import styles from './Contact.module.css';
 const ContactDialog=dynamic(()=>import('@/components/contact/ContactDialog'),{ssr:false});
 const SocialPopover=dynamic(()=>import('@/components/contact/SocialPopover'),{ssr:false});
@@ -12,8 +13,8 @@ export function Contact(){const section=useRef<HTMLElement>(null),socialWrap=use
   const closeSocial=useCallback(()=>{setSocial(false);socialWrap.current?.querySelector<HTMLButtonElement>('button')?.focus();},[]);
   useGSAP(()=>{if(reducedMotion())return;const timeline=gsap.timeline({scrollTrigger:{trigger:section.current,start:()=>`top+=${innerHeight} top`,end:'bottom bottom',scrub:.65},defaults:{ease:'none'}});
     timeline.to({}, {duration:1},0).fromTo('[data-contact-label]',{y:30,autoAlpha:0},{y:0,autoAlpha:1,duration:.06},0);
-    timeline.fromTo('[data-contact-line="1"]',{xPercent:-18,y:40,autoAlpha:0},{xPercent:0,y:0,autoAlpha:1,duration:.76},.06).fromTo('[data-contact-line="2"]',{xPercent:18,y:40,autoAlpha:0},{xPercent:0,y:0,autoAlpha:1,duration:.76},.06);
-    timeline.to('[data-contact-title]',{scale:1.02,duration:.025},.82).to('[data-contact-title]',{scale:1,duration:.035},.845);
+    timeline.fromTo('[data-contact-line="1"]',{xPercent:-18,y:40,autoAlpha:0},{xPercent:0,y:0,autoAlpha:1,duration:contactCollision-.06},.06).fromTo('[data-contact-line="2"]',{xPercent:18,y:40,autoAlpha:0},{xPercent:0,y:0,autoAlpha:1,duration:contactCollision-.06},.06);
+    timeline.to('[data-contact-title]',{scale:1.02,duration:.025},contactCollision).to('[data-contact-title]',{scale:1,duration:.035},contactCollision+.025);
     timeline.fromTo('[data-contact-actions]',{y:56,autoAlpha:0},{y:0,autoAlpha:1,duration:.10},.88).fromTo('[data-contact-footer]',{y:20,autoAlpha:0},{y:0,autoAlpha:1,duration:.04},.96);
     timeline.to('[data-contact-heading]',{y:-32,duration:.94},.06);
   },{scope:section});
