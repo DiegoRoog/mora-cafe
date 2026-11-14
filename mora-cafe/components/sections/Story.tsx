@@ -17,7 +17,7 @@ export function Story(){const section=useRef<HTMLElement>(null);useGSAP(()=>{if(
       <h2 data-split>Aqui, o<br/>café <em>mora.</em></h2>
       <p className={styles.body} data-reveal>A Mora nasceu de uma ideia simples: café bom não tem pressa. Trabalhamos com pequenos produtores do Sul de Minas, uma das regiões cafeeiras mais tradicionais do Brasil, e acompanhamos cada lote da colheita até a torra. Sem atalhos e sem exageros: o grão certo, no ponto certo, esperando por você na xícara.</p>
       <p className={styles.note} data-reveal><em>Mora: do verbo morar.<br/>Um lugar para ficar um pouco mais.</em></p>
-      <div data-reveal><Button href="#visite">Venha nos conhecer</Button></div>
+      <div data-reveal data-reveal-action><Button href="#visite">Venha nos conhecer</Button></div>
     </div></Reveal>
     <div className={styles.cups} data-cups aria-hidden="true"><div className={styles.track}>{[0,1].map(copy=><div className={styles.cupSet} key={copy}>{Array.from({length:18},(_,i)=><CupIcon key={i} variant={i%3}/>)}</div>)}</div><div className={styles.shelf}/></div>
   </section>;

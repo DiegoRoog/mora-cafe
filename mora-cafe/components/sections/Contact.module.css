@@ -3,3 +3,29 @@
 @media(max-width:768px){.rail{height:480vh}.stage{min-height:740px}.heading{top:17%;left:24px;width:calc(100% - 80px);text-align:left}.eyebrow{justify-content:flex-start;font-size:.65rem;gap:12px}.eyebrow::before{width:24px}.eyebrow::after{display:none}.heading h2{font-size:clamp(2.6rem,10vw,4rem);line-height:1.04}.heading h2>span{display:block}.actions{top:auto;bottom:100px;left:24px;width:calc(100% - 80px);text-align:left}.actions>p{font-size:.95rem;line-height:1.55;margin-bottom:24px}.buttons{flex-direction:column;gap:12px;align-items:stretch}.buttons button{width:100%;min-height:52px;font-size:.65rem;letter-spacing:.1em;padding-inline:16px}.socialWrap{width:100%}.footer{left:24px;right:24px;bottom:14px;font-size:.625rem;gap:12px;padding-top:10px}.footer p{max-width:23ch}.footer p span{display:block}.footer a{font-size:.625rem;gap:6px}.scrim{background:linear-gradient(180deg,rgba(42,24,16,.72),rgba(42,24,16,.35) 42%,rgba(42,24,16,.58) 58%,rgba(24,4,0,.86))}}
 @media(prefers-reduced-motion:reduce){.rail{height:auto;margin-top:0}.stage{position:relative;min-height:100svh;height:100svh}.heading,.actions,.footer{opacity:1;visibility:visible}}
 :global(.reduce-motion) .rail{height:auto;margin-top:0}:global(.reduce-motion) .stage{position:relative;height:100svh;min-height:740px}
+
+@media(max-width:768px){
+  .buttons button{font-size:.75rem;letter-spacing:.08em}
+  .footer,.footer a{font-size:.6875rem}
+}
+
+/* In static/short scenes every part is in document flow and can be reached. */
+:global(.reduce-motion) .stage{display:flex;flex-direction:column;gap:40px;height:auto;min-height:100svh;padding:120px var(--gutter) 28px;overflow:visible}
+:global(.reduce-motion) .heading,:global(.reduce-motion) .actions,:global(.reduce-motion) .footer{position:relative;inset:auto;width:auto;transform:none}
+:global(.reduce-motion) .actions{margin:24px 0}
+:global(.reduce-motion) .footer{margin-top:auto}
+@media(max-width:768px){
+  :global(.reduce-motion) .stage{padding:110px 56px 24px 24px;gap:32px}
+  :global(.reduce-motion) .heading h2{font-size:clamp(2.6rem,10vw,4rem)}
+  :global(.reduce-motion) .footer{flex-wrap:wrap;gap:8px}
+  :global(.reduce-motion) .footer p{max-width:none}
+  :global(.reduce-motion) .footer a{min-height:44px}
+}
+@media(max-height:620px){
+  .rail{height:auto;margin-top:0}
+  .stage{position:relative;display:flex;flex-direction:column;gap:32px;height:auto;min-height:100svh;padding:110px var(--gutter) 24px;overflow:visible}
+  .heading,.actions,.footer{position:relative;inset:auto;width:auto;transform:none;opacity:1;visibility:visible}
+  .heading h2{font-size:clamp(2.6rem,6vw,4.5rem)}
+  .actions{margin:20px 0}
+  .footer{margin-top:auto}
+}

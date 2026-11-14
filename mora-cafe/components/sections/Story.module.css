@@ -2,3 +2,7 @@
 @media(max-width:1024px){.content>div{width:60%}.content{padding-right:72px}.body{font-size:1.0625rem}}
 @media(max-width:768px){.story{min-height:145svh}.content{min-height:110svh;padding:16vh 68px 13vh 24px}.content>div{width:100%}.content h2{font-size:clamp(3.8rem,16vw,6rem)}.body{font-size:1rem;line-height:1.6}.scrim{background:linear-gradient(90deg,rgba(42,24,16,.87),rgba(42,24,16,.64) 70%,rgba(42,24,16,.2))}.image img{object-position:78% 72%}.note{font-size:1.4rem}.cups{height:150px}}
 @media(prefers-reduced-motion:reduce){.story{margin-top:0;padding-top:0;mask-image:none;min-height:100svh}.content{padding-top:12vh}.track{animation:none}}
+:global(.reduce-motion) .story{margin-top:0;padding-top:0;mask-image:none;min-height:100svh}
+:global(.reduce-motion) .content{padding-top:110px;padding-bottom:80px}
+:global(.reduce-motion) .track{animation:none}
+@media(max-height:620px){.story{margin-top:0;padding-top:0;mask-image:none;min-height:100svh}.content{min-height:100svh;padding-top:110px;padding-bottom:80px}.track{animation:none}}

@@ -31,3 +31,4 @@ img,svg{display:block}img{max-width:100%}
 body:has(dialog[open]) [data-section-marker]{visibility:hidden}
 @media(max-width:480px){.eyebrow{font-size:.75rem;letter-spacing:.12em}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition-duration:.01ms!important}}
+.demo-notice{position:fixed;z-index:180;left:50%;bottom:24px;transform:translateX(-50%);width:min(90%,560px);padding:16px 24px;border:1px solid var(--mora-line-light);border-radius:20px;background:var(--mora-ink);color:var(--mora-cream);box-shadow:var(--mora-shadow);font-size:1rem;line-height:1.5;text-align:center}.demo-notice:empty{display:none}

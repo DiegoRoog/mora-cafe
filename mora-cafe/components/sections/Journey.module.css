@@ -14,3 +14,35 @@
 .graph text{font-size:24px}
 @media(max-width:1024px){.graph text{font-size:36px}}
 @media(max-width:768px){.graph text{font-size:48px}.graphTitle{font-size:.6875rem}.note .eyebrow{font-size:.6875rem}.stamp{bottom:40px;width:58px;height:58px}.stamp strong{font-size:.6rem}}
+
+/* Keep the introduction and products in one readable group. */
+.coffeeHeading{column-gap:32px;margin-bottom:64px}
+.coffeeHeading>p:last-child{justify-self:start;max-width:33ch}
+@media(max-width:768px){
+  .coffees{padding-top:64px}
+  .coffeeHeading{margin-bottom:24px}
+  .coffeeHeading h2{margin:16px 0}
+  .cardTrack{padding-top:24px}
+  .cardTitle .eyebrow,.favorite{font-size:.6875rem}
+  .visitButtons a{font-size:.75rem}
+}
+
+:global(.reduce-motion) .journey{margin-top:0}
+:global(.reduce-motion) .roastStage{overflow:visible;padding-top:110px;padding-bottom:64px;align-items:start}
+:global(.reduce-motion) .note{transform:none}
+:global(.reduce-motion) .stamp{position:relative;right:auto;bottom:auto;align-self:flex-end;margin:20px 12px 0 auto;transform:none}
+:global(.reduce-motion) .graph [data-bean-fill]{fill:var(--mora-roast)}
+:global(.reduce-motion) .marquee>div{transform:none!important}
+:global(.reduce-motion) .mapPulse{animation:none}
+:global(.reduce-motion) .curtainFoot{height:64px}
+@media(max-height:620px){
+  .journey{margin-top:0}
+  .roastRail{height:auto}
+  .roastStage{position:relative;height:auto;min-height:100svh;overflow:visible;padding-top:110px;padding-bottom:56px;align-items:start}
+  .notes{height:auto}
+  .note{position:relative;opacity:1;transform:none;margin:24px 0}
+  .stamp{position:relative;right:auto;bottom:auto;margin:20px 12px 0 auto;transform:none}
+  .graph [data-bean-fill]{fill:var(--mora-roast)}
+  .mapPulse{animation:none}
+  .curtainFoot{height:64px}
+}

@@ -6,7 +6,7 @@ import {trapDialogTab} from '@/lib/dialog-keyboard';
 import styles from './SiteNav.module.css';
 const links=[['História','#historia','historia'],['Cafés','#nossos-cafes','cafes'],['Localização','#visite','visite'],['Contato','#contato','contato']];
 export function SiteNav(){
-  const active=useActiveSection(),dialog=useRef<HTMLDialogElement>(null),trigger=useRef<HTMLButtonElement>(null);
+  const active=useActiveSection(true),dialog=useRef<HTMLDialogElement>(null),trigger=useRef<HTMLButtonElement>(null);
   const [scrolled,setScrolled]=useState(false),[open,setOpen]=useState(false);
   useEffect(()=>{const scroll=()=>setScrolled(window.scrollY>80);scroll();window.addEventListener('scroll',scroll,{passive:true});return()=>window.removeEventListener('scroll',scroll);},[]);
   function close(){dialog.current?.close();setOpen(false);overlayState(false);trigger.current?.focus();}

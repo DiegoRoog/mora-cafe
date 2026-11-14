@@ -13,7 +13,7 @@ export function RoastJourney(){const root=useRef<HTMLDivElement>(null);
       const temp=el.querySelector('[data-temperature]')!,time=el.querySelector('[data-time]')!,notes=Array.from(el.querySelectorAll<HTMLElement>('[data-roast-note]')),beans=Array.from(el.querySelectorAll<HTMLElement>('[data-roast-level]'));
       const state={p:0};const thresholds=[0,.38,.81,1],temps=[24,150,196,212],times=[0,240,510,630];
       const timeline=gsap.timeline({scrollTrigger:{trigger:el,start:'top top',end:'bottom bottom',scrub:.65,invalidateOnRefresh:true},defaults:{ease:'none'},onUpdate:()=>{const p=state.p;el.dataset.progress=p.toFixed(4);let i=p<.38?0:p<.81?1:2;const t=(p-thresholds[i])/(thresholds[i+1]-thresholds[i]);temp.textContent=String(Math.round(temps[i]+(temps[i+1]-temps[i])*t));const sec=Math.round(times[i]+(times[i+1]-times[i])*t);time.textContent=`${String(Math.floor(sec/60)).padStart(2,'0')}:${String(sec%60).padStart(2,'0')}`;i=p<.28?0:p<.70?1:p<.93?2:3;notes.forEach((n,j)=>{n.style.opacity=j===i?'1':'0';n.style.transform=`translateY(${j===i?-(p-thresholds[Math.min(i,2)])*35:j<i?-24:24}px)`;n.setAttribute('aria-hidden',String(j!==i));});beans.forEach((b,j)=>b.style.opacity=j<Math.max(1,Math.round(p*3))?'1':'.22');}});
-      gsap.set(path,{strokeDasharray:length,strokeDashoffset:length});
+      gsap.set(path,{strokeDasharray:length,strokeDashoffset:length});gsap.set('[data-bean-fill]',{fill:'#8e9b5b'});
       timeline.to(state,{p:1,duration:1},0).to(path,{strokeDashoffset:0,duration:1},0).fromTo('[data-roast-paper]',{backgroundColor:'#f3e7d3'},{backgroundColor:'#ead6ba',duration:1},0);
       timeline.to('[data-traveler]',{motionPath:{path,align:path,alignOrigin:[.5,.5],autoRotate:20},duration:1},0);
       timeline.to('[data-bean-fill]',{fill:'#d8b54d',duration:.38},0).to('[data-bean-fill]',{fill:'#b7783a',duration:.22},.38).to('[data-bean-fill]',{fill:'#7a4a2a',duration:.21},.6).to('[data-bean-fill]',{fill:'#542510',duration:.19},.81);
@@ -21,7 +21,7 @@ export function RoastJourney(){const root=useRef<HTMLDivElement>(null);
       timeline.fromTo('[data-crack]',{opacity:0,scale:.4},{opacity:.9,scale:1.2,transformOrigin:'50% 50%',duration:.015},.81).to('[data-crack]',{opacity:0,scale:1.7,duration:.035},.825);
       timeline.fromTo('[data-stamp]',{scale:1.3,rotation:-12,autoAlpha:0},{scale:1,rotation:0,autoAlpha:1,duration:.05,ease:'power2.out'},.95);
       timeline.fromTo('[data-roast-heading]',{y:24},{y:-24,duration:1},0);
-    });});return()=>{alive=false;};
+    });});return()=>{alive=false;const el=root.current;if(!el)return;el.querySelectorAll<HTMLElement>('[data-roast-note]').forEach(n=>{n.style.opacity='';n.style.transform='';n.removeAttribute('aria-hidden');});el.querySelector('[data-temperature]')!.textContent='212';el.querySelector('[data-time]')!.textContent='10:30';el.querySelectorAll<HTMLElement>('[data-roast-level]').forEach((n,i)=>{n.style.opacity=i<3?'1':'.22';});};
   },{scope:root});
   return <div id="jornada" ref={root} className={styles.roastRail}>
     <div className={styles.roastStage} data-roast-paper>
@@ -35,7 +35,7 @@ export function RoastJourney(){const root=useRef<HTMLDivElement>(null);
           {[['212 °C',96],['196 °C',190],['150 °C',320],['100 °C',430]].map(([label,y])=><g key={label}><line x1="40" x2="960" y1={y} y2={y} stroke="currentColor" opacity=".16"/><text x="40" y={Number(y)-16}>{label}</text></g>)}
           <path d={curve} stroke="currentColor" strokeWidth="2" strokeDasharray="3 9" opacity=".18" fill="none"/>
           <path d={curve} data-curve stroke="currentColor" strokeWidth="3" fill="none"/>
-          <g data-traveler transform="translate(960 96)"><g data-crack opacity="0">{Array.from({length:6},(_,i)=><path key={i} d="M0 -30V-43" stroke="var(--mora-caramel)" strokeWidth="3" transform={`rotate(${i*60})`}/>)}</g><g data-bean-core><ellipse data-bean-fill rx="20" ry="29" fill="#8e9b5b" transform="rotate(30)"/><path d="M10-22C-15-10 13 5-10 22" stroke="var(--mora-paper)" strokeWidth="2" fill="none"/></g></g>
+          <g data-traveler transform="translate(960 96)"><g data-crack opacity="0">{Array.from({length:6},(_,i)=><path key={i} d="M0 -30V-43" stroke="var(--mora-caramel)" strokeWidth="3" transform={`rotate(${i*60})`}/>)}</g><g data-bean-core><ellipse data-bean-fill rx="20" ry="29" fill="#542510" transform="rotate(30)"/><path d="M10-22C-15-10 13 5-10 22" stroke="var(--mora-paper)" strokeWidth="2" fill="none"/></g></g>
           {['00:00','04:00','08:30','10:30'].map((t,i)=><text key={t} x={40+i*300} y="590" textAnchor={i===3?'end':'start'}>{t}</text>)}
         </svg>
         <div className={styles.stamp} data-stamp><BeanIcon rays/><span>Torra média</span><strong>Mora Café</strong><small>Lote MRC–0324</small></div>

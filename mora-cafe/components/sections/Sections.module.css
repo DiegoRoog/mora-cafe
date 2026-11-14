@@ -4,3 +4,4 @@
 @media(prefers-reduced-motion:reduce){.rail,.roastRail,.contactRail{height:auto}.stage{position:relative;min-height:100svh;height:auto}}
 :global(.reduce-motion) .rail,:global(.reduce-motion) .roastRail,:global(.reduce-motion) .contactRail{height:auto}
 :global(.reduce-motion) .stage{position:relative;min-height:100svh;height:auto}
+@media(max-height:620px){.rail,.roastRail,.contactRail{height:auto}.stage{position:relative;height:auto;min-height:100svh}}

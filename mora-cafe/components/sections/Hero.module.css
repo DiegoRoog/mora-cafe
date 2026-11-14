@@ -21,3 +21,36 @@
 @media(max-width:1280px){.titleBlock{top:14%}.title{font-size:7vw}}
 @media(max-width:768px){.titleBlock{top:13%}.title{font-size:clamp(2.5rem,11vw,3.5rem)}}
 @media(max-width:768px){:global(.reduce-motion) .right{top:auto;bottom:70px;background:rgba(42,24,16,.7);padding:12px;border-radius:12px}:global(.reduce-motion) .stage{min-height:844px}}
+
+/* A full-scene scrim keeps the mobile copy legible without a floating dark box. */
+@media(max-width:768px){
+  .side::before,.titleBlock::before{display:none}
+  .scrim{background:linear-gradient(180deg,rgba(42,24,16,.76),rgba(42,24,16,.58) 28%,rgba(42,24,16,.68) 39%,rgba(42,24,16,.25) 51%,transparent 63%,transparent 86%,rgba(42,24,16,.42))}
+}
+
+/* Static scenes scroll naturally instead of clipping an oversized sticky stage. */
+:global(.reduce-motion) .stage.stage{height:auto;min-height:max(740px,100svh)}
+:global(.reduce-motion) .hint{display:none}
+@media(max-width:768px){
+  :global(.reduce-motion) .stage.stage{min-height:clamp(820px,220vw,920px)}
+  :global(.reduce-motion) .titleBlock{top:100px}
+  :global(.reduce-motion) .side{top:238px}
+  :global(.reduce-motion) .right{top:304px;bottom:auto;visibility:visible;background:none;padding:0;border-radius:0}
+  :global(.reduce-motion) .scrim{background:linear-gradient(180deg,rgba(42,24,16,.8),rgba(42,24,16,.66) 37%,rgba(42,24,16,.22) 48%,transparent 62%,rgba(42,24,16,.3))}
+}
+@media(max-height:620px){
+  .stage.stage{height:auto;min-height:640px}
+  .titleBlock{top:100px}
+  .title{font-size:clamp(2.5rem,5vw,3.5rem)}
+  .label{margin-bottom:16px}
+  .side{top:55%;font-size:1rem}
+  .right{visibility:visible}
+  .hint{display:none}
+  :global(.reduce-motion) .stage.stage{min-height:640px}
+}
+@media(max-height:620px) and (max-width:768px){
+  .stage.stage,:global(.reduce-motion) .stage.stage{min-height:clamp(820px,220vw,920px)}
+  .title{font-size:clamp(2.5rem,11vw,3.5rem)}
+  .side{top:238px}
+  .right{top:304px;bottom:auto;background:none;padding:0}
+}
