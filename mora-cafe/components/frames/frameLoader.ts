@@ -39,6 +39,7 @@ export class FrameLoader{
     for(const cache of [this.bitmaps,this.previews])for(const[i,b]of cache){const d=Math.abs(i-index);if(d<distance){distance=d;actual=i;bitmap=b;}}
     return{bitmap,index:actual};
   }
+  frame(index:number){return this.bitmaps.get(index)||this.previews.get(index);}
   private prune(){
     if(this.bitmaps.size<=this.budget)return;
     for(const[i,b]of [...this.bitmaps].sort(([a],[b])=>Math.abs(b-this.desired)-Math.abs(a-this.desired))){if(this.bitmaps.size<=this.budget)break;b.close();this.bitmaps.delete(i);}
@@ -67,6 +68,7 @@ export class FrameLoader{
     const generation=this.generation;this.previewing.add(index);
     createImageBitmap(this.blobs.get(index)!,{resizeWidth:320,resizeHeight:180,resizeQuality:'low'}).then(bitmap=>{
       if(this.disposed||!this.active||generation!==this.generation){bitmap.close();return;}
+      if(bitmap.width>320||bitmap.height>180){bitmap.close();this.previewFailures.add(index);return;}
       this.previews.set(index,bitmap);this.notify();
     }).catch(()=>{this.previewFailures.add(index);}).finally(()=>{this.previewing.delete(index);this.schedulePreview();});
   }
